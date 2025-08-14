@@ -1,0 +1,24 @@
+PLACEHOLDER FOR SAMPLE MENU IMAGE
+
+This file serves as a placeholder for the sample-menu.jpg image file.
+
+To add the actual sample menu image:
+1. Delete this placeholder file
+2. Upload or add a file named 'sample-menu.jpg' in this assets/ folder
+3. The image should be a clear, readable restaurant menu photo
+4. Recommended formats: JPG, PNG, JPEG
+5. Recommended size: 800x600 pixels or larger for better OCR accuracy
+
+Example menu items that would work well for testing:
+- Cheeseburger
+- Grilled Chicken Salad
+- Caesar Salad
+- French Fries
+- Vegetable Soup
+- Fish and Chips
+- Garden Wrap
+- Quinoa Bowl
+
+The AI application will analyze the menu image and recommend the healthiest option with detailed nutritional explanations.
+
+For testing without an image, you can also use the text input feature in the app by entering menu items directly.
