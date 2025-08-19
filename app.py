@@ -2,6 +2,7 @@ import streamlit as st
 import base64
 import os
 from openai import OpenAI
+from utils import validate_inputs  # Import from utils module
 
 # Page configuration
 st.set_page_config(
@@ -28,19 +29,7 @@ def get_model_name():
         "gpt-4o"
     )
 
-def validate_inputs(uploaded_file, menu_text):
-    """Validate user inputs"""
-    if not uploaded_file and not menu_text.strip():
-        return False, "Please upload a menu photo or enter menu items."
-    
-    if uploaded_file:
-        if uploaded_file.size > 10 * 1024 * 1024:  # 10MB limit
-            return False, "File size too large. Please upload a file smaller than 10MB."
-    
-    if menu_text and len(menu_text.strip()) > 2000:
-        return False, "Menu text too long. Please keep it under 2000 characters."
-    
-    return True, ""
+# Note: validate_inputs function has been moved to utils.py for better testability
 
 def format_nutrition_response(recommendation):
     """Format the recommendation with nutrition rubric structure"""
@@ -81,7 +70,6 @@ except Exception as e:
 st.title("🥗 Healthiest Food Recommender")
 st.markdown("""
 **AI-Powered Nutrition Analysis** 🤖
-
 Upload a menu photo or enter menu items below. Our AI will analyze nutritional content 
 and recommend the healthiest option based on comprehensive health factors.
 """)
@@ -126,7 +114,7 @@ with col2:
 
 # Analysis section
 if st.button("🔍 Analyze and Recommend", type="primary", use_container_width=True):
-    # Input validation
+    # Input validation using imported function
     is_valid, error_message = validate_inputs(uploaded_file, menu_text)
     
     if not is_valid:
@@ -216,8 +204,4 @@ if st.button("🔍 Analyze and Recommend", type="primary", use_container_width=T
 
 # Footer
 st.markdown("---")
-st.markdown("""
-<div style='text-align: center; color: #666;'>
-    <small>🤖 Powered by OpenAI • 🥗 Promoting Healthy Choices • ⚡ Built with Streamlit</small>
-</div>
-""", unsafe_allow_html=True)
+st.markdown("""<div style="text-align: center; color: #666;">    🤖 Powered by OpenAI • 🥗 Promoting Healthy Choices • ⚡ Built with Streamlit</div>""", unsafe_allow_html=True)
